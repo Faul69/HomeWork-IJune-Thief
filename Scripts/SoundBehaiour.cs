@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class SoundBehaiour : MonoBehaviour
 {
+    private const int MinVolume = 0;
+    private const int MaxVolume = 1;
+
     private AudioSource _audioSource;
     private bool _isInvoke;
 
     private void OnEnable()
     {
-        _audioSource = gameObject.GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
         _audioSource.loop = true;
-        _audioSource.volume = 0;
+        _audioSource.volume = MinVolume;
         _isInvoke = false;
     }
 
@@ -19,22 +22,22 @@ public class SoundBehaiour : MonoBehaviour
     {
         if (_isInvoke)
         {
-            StartCoroutine(routine: VolumeLower());
+            StartCoroutine(routine: ChangeVolumeTo(MinVolume));
             _isInvoke = false;
         }
         else
         {
-            _audioSource.volume = 1;
+            StartCoroutine(routine: ChangeVolumeTo(MaxVolume));
             _isInvoke = true;
         }
     }
 
-    private IEnumerator VolumeLower()
+    private IEnumerator ChangeVolumeTo(int targetVolum)
     {
-        while (_audioSource.volume > 0)
+        while (_audioSource.volume != targetVolum)
         {
             yield return new WaitForSeconds(Time.deltaTime);
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, 0, 1 * Time.deltaTime);
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, targetVolum, 1 * Time.deltaTime);
         }
 
         yield return null;

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimationBehavior : MonoBehaviour
 {
     private const string IsTrigger = "isTrigger";
+
     private Animator _animator;
 
     private void OnEnable()

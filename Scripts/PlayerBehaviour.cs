@@ -10,11 +10,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(new Vector3(0.1f * _speed, 0, 0));
+            transform.Translate(Vector3.right * _speed);
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(new Vector3(-0.1f * _speed, 0, 0));
+            transform.Translate(Vector3.left * _speed);
         }
     }
 }
