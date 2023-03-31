@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+
 public class AnimationBehavior : MonoBehaviour
 {
     private const string IsTrigger = "isTrigger";
@@ -10,7 +12,7 @@ public class AnimationBehavior : MonoBehaviour
 
     private void OnEnable()
     {
-        _animator = gameObject.GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
     }
 
     public void ChangeBool()

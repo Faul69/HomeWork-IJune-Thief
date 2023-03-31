@@ -38,10 +38,8 @@ public class SoundBehaiour : MonoBehaviour
     {
         while (_audioSource.volume != targetVolum)
         {
-            yield return new WaitForSeconds(Time.deltaTime);
-            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, targetVolum, 1 * Time.deltaTime);
+            yield return null;
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, targetVolum, Time.deltaTime);
         }
-
-        yield return null;
     }
 }
